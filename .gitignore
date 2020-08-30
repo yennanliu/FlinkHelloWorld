@@ -10,3 +10,4 @@ flink-project/data/Sidewalk_201912.GeoJSON
 idea.sbt
 target/*
 .idea/
+mainRunner/*
