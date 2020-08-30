@@ -1,0 +1,11 @@
+*.class
+*.log
+target/*
+flink-project/target/*
+flink-project/project/project/*
+flink-project/project/target/*
+.DS_Store
+flink-project/data/Sidewalk_201912.GeoJSON
+.idea/*
+idea.sbt
+target/*

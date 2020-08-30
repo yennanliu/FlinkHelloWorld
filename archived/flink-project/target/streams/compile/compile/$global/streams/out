@@ -1,0 +1,22 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/yennanliu/FlinkHelloWorld/archived/flink-project/src/main/scala/org/dev/LoadDataCSVAsTable.scala:10:8: object CsvTableSource is not a member of package org.apache.flink.table.sources[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.flink.table.sources.CsvTableSource[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/yennanliu/FlinkHelloWorld/archived/flink-project/src/main/scala/org/dev/LoadDataCSVAsTable.scala:29:20: not found: value CsvTableSource[0m
+[0m[[0m[31merror[0m] [0m[0m    val csvtable = CsvTableSource[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/yennanliu/FlinkHelloWorld/archived/flink-project/src/main/scala/org/dev/LoadDataCsv.scala:14:24: value readCsvFile is not a member of org.apache.flink.streaming.api.scala.StreamExecutionEnvironment[0m
+[0m[[0m[31merror[0m] [0m[0m    val csvInput = env.readCsvFile[(String, String, String, String, String, String)]("FlinkHelloWorld/flink-project/data/sample2.csv")[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/yennanliu/FlinkHelloWorld/archived/flink-project/src/main/scala/org/dev/ProcessSideWalkData.scala:10:8: object CsvTableSource is not a member of package org.apache.flink.table.sources[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.flink.table.sources.CsvTableSource[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/yennanliu/FlinkHelloWorld/archived/flink-project/src/main/scala/org/dev/ProcessSideWalkData.scala:29:20: not found: value CsvTableSource[0m
+[0m[[0m[31merror[0m] [0m[0m    val csvtable = CsvTableSource[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/yennanliu/FlinkHelloWorld/archived/flink-project/src/main/scala/org/dev/ProcessSideWalkData.scala:55:16: not found: value CsvTableSink[0m
+[0m[[0m[31merror[0m] [0m[0m    val sink = CsvTableSink("output/output")[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/yennanliu/FlinkHelloWorld/archived/flink-project/src/main/scala/org/dev/ProcessSideWalkData.scala:56:12: value writeToSink is not a member of Unit[0m
+[0m[[0m[31merror[0m] [0m[0m    result.writeToSink(sink)[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m7 errors found[0m
