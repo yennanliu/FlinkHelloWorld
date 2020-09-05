@@ -18,11 +18,11 @@ bash script/start-cluster.sh   # Start Flink
 bash script/stop-cluster.sh    # Stop flink
 ```
 
-## Init project (sbt)
+## Setup (maven)
 
 ```bash
-# https://ci.apache.org/projects/flink/flink-docs-release-1.10/dev/projectsetup/scala_api_quickstart.html
-sbt new tillrohrmann/flink-project.g8
+# https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/project-configuration.html
+
 ```
 
 ## Quick start (manually)
@@ -49,11 +49,6 @@ nc -l 9000
 # run the stream word count job (SocketWindowWordCount)
 ./bin/flink run examples/streaming/SocketWindowWordCount.jar --port 9000
 
-```
-
-## Quick start (Scala REPL)
-```bash
-bash script/start-scala-shell.sh local
 ```
 
 ## Quick start (docker)
@@ -106,6 +101,9 @@ docker-compose up
 
 <details>
 <summary>Ref</summary>
+
+- Project config
+	- https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/project-configuration.html
 
 - Start Flink with SBT Scala
 	- https://ci.apache.org/projects/flink/flink-docs-master/dev/project-configuration.html

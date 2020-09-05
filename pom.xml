@@ -1,0 +1,6 @@
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-streaming-scala_2.11</artifactId>
+  <version>1.11.0</version>
+  <scope>provided</scope>
+</dependency>
