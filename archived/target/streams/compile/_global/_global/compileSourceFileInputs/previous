@@ -1,1 +1,0 @@
-["sbt.Task[scala.collection.immutable.Map[java.lang.String, scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]]",{"2.12.10":{"hashes":[["/Users/yennanliu/FlinkHelloWorld/archived/SocketWindowWordCount.scala","0aeddbc0df9134edc93d54f9c904678ce589db21"]],"lastModifiedTimes":[]}}]
