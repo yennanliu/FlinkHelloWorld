@@ -1,55 +1,39 @@
 # FlinkHelloWorld
+> Build Flink hello-world apps
 
+- Env
+	- SBT
+- IDE
+	- IntelliJ
 
 ## Install
 - https://ci.apache.org/projects/flink/flink-docs-stable/getting-started/tutorials/local_setup.html
 - https://github.com/yennanliu/utility_shell/tree/master/flink
 
+## Inspired from 
+- https://github.com/phatak-dev/flink-examples
+- https://github.com/streaming-with-flink/examples-scala
+- https://github.com/apache/flink
+
+## Start the Flink server 
+
 ```bash
 # install  (Mac OSX)
-$ brew install apache-flink
-...
-$ flink --version
-Version: 1.2.0, Commit ID: 1c659cf
+# $ brew install apache-flink
+# ...
+# $ flink --version
+# Version: 1.2.0, Commit ID: 1c659cf
 
 # start a local flink cluster
 bash script/start-cluster.sh   # Start Flink
-
 bash script/stop-cluster.sh    # Stop flink
-```
-
-## Init project (sbt)
-
-```bash
-# https://ci.apache.org/projects/flink/flink-docs-release-1.10/dev/projectsetup/scala_api_quickstart.html
-sbt new tillrohrmann/flink-project.g8
-```
-
-## Quick start (manually)
-
-```bash
-# compile the scala script 
-
-# to the project
-cd flink-1.10.0
-# start the flink local server 
-./bin/start-cluster.sh local
-
-# stop the flink local server
-./bin/stop-cluster.sh local
-
-# start flink scala console
-.bin/start-scala-shell.sh local
 
 # visit UI via 
 # http://localhost:8081
-
-# open a terminal send msg to flink (port 9000)
-nc -l 9000 
-# run the stream word count job (SocketWindowWordCount)
-./bin/flink run examples/streaming/SocketWindowWordCount.jar --port 9000
-
 ```
+
+<details>
+<summary>Quick Start</summary>
 
 ## Quick start (Scala REPL)
 ```bash
@@ -101,6 +85,7 @@ docker run --name flink_taskmanager -d -t flink taskmanager
 # Method 3) Running a cluster using Docker Compose
 docker-compose up
 ```
+</details>
 
 ## Ref 
 
