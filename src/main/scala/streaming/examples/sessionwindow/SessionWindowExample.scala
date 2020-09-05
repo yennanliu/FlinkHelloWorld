@@ -1,6 +1,6 @@
 package streaming.examples.sessionwindow
 
-import com.madhukaraphatak.flink.streaming.examples.Models.Session
+import streaming.examples.Models.Session
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.windowing.assigners.GlobalWindows
 import org.apache.flink.streaming.api.windowing.triggers.PurgingTrigger

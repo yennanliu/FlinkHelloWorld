@@ -1,6 +1,6 @@
 package streaming.examples.sessionwindow
 
-import com.madhukaraphatak.flink.streaming.examples.Models.Session
+import streaming.examples.Models.Session
 import org.apache.flink.streaming.api.windowing.triggers.Trigger.TriggerContext
 import org.apache.flink.streaming.api.windowing.triggers.{Trigger, TriggerResult}
 import org.apache.flink.streaming.api.windowing.windows.Window
