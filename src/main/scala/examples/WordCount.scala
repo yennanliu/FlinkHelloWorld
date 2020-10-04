@@ -12,6 +12,8 @@ object WordCount {
 
   def main(args: Array[String]) {
 
+    println("WordCount run ...")
+
     val env = ExecutionEnvironment.getExecutionEnvironment
 
     val data = List("hi","how are you","hi")
@@ -28,8 +30,5 @@ object WordCount {
 
     println(sum.collect())
 
-
-
   }
-
 }
