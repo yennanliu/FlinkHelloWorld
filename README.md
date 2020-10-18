@@ -35,6 +35,12 @@ bash script/stop-cluster.sh    # Stop flink
 <details>
 <summary>Quick Start</summary>
 
+## Send the stream via CLI
+```bash
+# send to localhost:9000
+nc -l 9000
+```
+
 ## Quick start (Scala REPL)
 ```bash
 bash script/start-scala-shell.sh local

@@ -1,6 +1,8 @@
 package examples
 
-import org.apache.flink.api.scala._
+// *** Please open one terminal and run below command, before trigger this script
+// nc -l 9000
+
 import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
