@@ -4,7 +4,6 @@ import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.windowing.time.Time
 
-
 object EventTimeExample {
 
   case class Stock(time:Long, symbol:String,value:Double)
@@ -12,7 +11,6 @@ object EventTimeExample {
   def main(args: Array[String]) {
 
     val env = StreamExecutionEnvironment.getExecutionEnvironment
-
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
     val source = env.socketTextStream("localhost",50050)
     val parsedStream = source.map(value => {
@@ -21,15 +19,10 @@ object EventTimeExample {
     })
 
     val timedValue = parsedStream.assignAscendingTimestamps(_.time)
-
     val keyedStream = timedValue.keyBy(_.symbol)
-
     val timeWindow = keyedStream.timeWindow(Time.seconds(10)).max("value").name("timedwindow")
-
     timeWindow.print.name("print sink")
-
     env.execute()
-
   }
 
 }

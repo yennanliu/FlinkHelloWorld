@@ -8,18 +8,13 @@ import org.apache.flink.streaming.api.windowing.windows.GlobalWindow
 
 import scala.util.Try
 
-
 object SessionWindowExample {
 
     def main(args: Array[String]) {
-
-
       val env = StreamExecutionEnvironment.getExecutionEnvironment
-
       val source = env.socketTextStream("localhost", 9000)
 
       //session map
-
       val values = source.map(value => {
         val columns = value.split(",")
         val endSignal = Try(Some(columns(2))).getOrElse(None)
@@ -29,7 +24,6 @@ object SessionWindowExample {
       val keyValue = values.keyBy(_.sessionId)
 
       // create global window
-
       val sessionWindowStream = keyValue.
         window(GlobalWindows.create()).
         trigger(PurgingTrigger.of(new SessionTrigger[GlobalWindow]()))
@@ -37,7 +31,5 @@ object SessionWindowExample {
       sessionWindowStream.sum("value").print()
 
       env.execute()
-
-
     }
 }

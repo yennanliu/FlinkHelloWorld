@@ -16,18 +16,13 @@ object CustomSource {
     }
   }
 
-
   def main(args: Array[String]) {
 
     val env = StreamExecutionEnvironment.getExecutionEnvironment
-
     val customSource = env.addSource(generateRandomStringSource _)
 
     customSource.print()
-
     env.execute()
-
-
   }
 
 }
