@@ -31,18 +31,18 @@ object StreamingDataToRedis{
     // run the job
     env.execute("Socket Window Count")
   }
-}
 
-class MyRedisMapper extends RedisMapper[Tuple2[String, String]]{
-  override def getKeyFromData(data: (String, String)): String = {
-    data._1
-  }
+  class MyRedisMapper extends RedisMapper[Tuple2[String, String]]{
+    override def getKeyFromData(data: (String, String)): String = {
+      data._1
+    }
 
-  override def getValueFromData(data: (String, String)): String = {
-    data._2
-  }
+    override def getValueFromData(data: (String, String)): String = {
+      data._2
+    }
 
-  override def getCommandDescription: RedisCommandDescription = {
-    new RedisCommandDescription(RedisCommand.LPUSH)
+    override def getCommandDescription: RedisCommandDescription = {
+      new RedisCommandDescription(RedisCommand.LPUSH)
+    }
   }
 }
