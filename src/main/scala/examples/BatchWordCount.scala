@@ -1,6 +1,11 @@
 package examples
 
 import org.apache.flink.api.scala.ExecutionEnvironment
+import java.io._
+import scala.util.Try
+
+// UDF
+import common.FileOP
 
 object BatchWordCount extends App{
   val inputPath = "data/test.txt"
@@ -18,7 +23,15 @@ object BatchWordCount extends App{
     .groupBy(0)
     .sum(1)
 
+  // if output exist, delete it
+  val outputFile = new File(output)
+  val file_op = new FileOP
+  file_op.DeleteFileIfExist(outputFile)
+
   counts.writeAsCsv(output, "\n", " ").setParallelism(1)
   env.execute("BATCH WORD COUNT")
-
 }
+
+
+
+
