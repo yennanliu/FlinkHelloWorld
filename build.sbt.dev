@@ -1,0 +1,47 @@
+name := "flinkhelloworld"
+
+scalaVersion := "2.11.12"
+
+val flinkVersion = "1.9.0"
+
+val flinkDependencies = Seq(
+  "org.apache.flink" % "flink-avro" % flinkVersion,
+  "org.apache.flink" %% "flink-scala" % flinkVersion % "provided",
+  "org.apache.flink" %% "flink-streaming-scala" % flinkVersion % "provided",
+  "org.apache.flink" %% "flink-connector-filesystem" % flinkVersion,
+  "org.apache.flink" %% "flink-connector-kafka-0.10" % flinkVersion,
+  "org.apache.flink" % "flink-metrics-dropwizard" % flinkVersion,
+  "org.apache.flink" %% "flink-test-utils" % flinkVersion,
+  "org.apache.flink" % "flink-table" % flinkVersion,
+  "org.apache.flink" %% "flink-orc" % flinkVersion,
+  "org.apache.flink" %% "flink-connector-elasticsearch6" % flinkVersion,
+  "org.apache.flink" % "flink-shaded-hadoop2" % "2.4.1-1.8.0" % "provided",
+  "org.apache.hadoop" % "hadoop-common" % "2.4.0" exclude("org.slf4j", "slf4j-jdk14"),
+  "com.github.scopt" %% "scopt" % "3.7.0",
+  "org.scalatest" %% "scalatest" % "3.0.3" % "test",
+  "com.maxmind.geoip2" % "geoip2" % "2.5.0",
+  "org.hibernate" % "hibernate-validator" % "5.1.3.Final",
+  "org.hibernate" % "hibernate-validator-annotation-processor" % "5.1.3.Final",
+  "stax" % "stax" % "1.2.0",
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7.1",
+  "com.fasterxml.jackson.module" % "jackson-module-scala_2.11" % "2.6.7.1"
+)
+
+lazy val codeGen = TaskKey[Unit]("codeGen", "Code generators")
+
+(compile in Compile) := (compile in Compile).value
+
+lazy val root = (project in file(".")).
+  settings(
+    libraryDependencies ++= flinkDependencies
+  )
+
+Compile / run  := Defaults.runTask(Compile / fullClasspath,
+  Compile / run / mainClass,
+  Compile / run / runner
+).evaluated
+
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", xs@_*) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}
