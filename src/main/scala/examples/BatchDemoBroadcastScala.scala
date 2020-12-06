@@ -16,7 +16,7 @@ object BatchDemoBroadcastScala extends App{
   val broadData = ListBuffer[Tuple2[String, Int]]()
   broadData.append(("zs", 199))
   broadData.append(("ls", 24))
-  broadData.append(("xx", 77))
+  broadData.append(("ww", 77))
 
   // process the to-broadcast data
   val tupleData = env.fromCollection(broadData)
@@ -50,5 +50,5 @@ object BatchDemoBroadcastScala extends App{
     }
     }).withBroadcastSet (toBroadcastData, "broadcastMapName") // run the op for broadcast data
 
-    println(result)
+    result.print()
 }
