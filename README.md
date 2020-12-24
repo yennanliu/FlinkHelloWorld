@@ -1,10 +1,15 @@
 # FlinkHelloWorld
-> Build Flink hello-world apps
+> Build variois Flink POC apps as well as infra/clusters set up
 
-- Env
-	- SBT
 - IDE
 	- IntelliJ
+- Programming language
+	- Scala
+		- sbt
+	- Java
+		- Maven
+	- Python
+		- pip/Conda
 
 ## Install
 - https://ci.apache.org/projects/flink/flink-docs-stable/getting-started/tutorials/local_setup.html
@@ -15,7 +20,7 @@
 - https://github.com/streaming-with-flink/examples-scala
 - https://github.com/apache/flink
 
-## Start the Flink server 
+## Start the Flink server (Scala)
 
 ```bash
 # install  (Mac OSX)
