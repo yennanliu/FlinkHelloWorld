@@ -3,7 +3,7 @@ package org.myorg.quickstart;
 // https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/datastream_api.html9999
 
 
-// plz run below as data source first, then run the program
+// plz run below as socket (data source) first, then run the program
 // nc -lk 9999
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
