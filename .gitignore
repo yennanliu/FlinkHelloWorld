@@ -1,3 +1,4 @@
+# scala
 *.class
 *.log
 target/*
@@ -11,3 +12,6 @@ idea.sbt
 project/*
 .idea/
 mainRunner/*
+# java
+java/quickstart/target/
+java/quickstart/quickstart.iml
