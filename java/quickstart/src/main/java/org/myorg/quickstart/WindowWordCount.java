@@ -1,0 +1,45 @@
+package org.myorg.quickstart;
+
+// https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/datastream_api.html9999
+
+
+// plz run below as data source first, then run the program
+// nc -lk 9999
+
+import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.util.Collector;
+import scala.Int;
+
+public class WindowWordCount {
+    public static void main(String[] args) throws Exception {
+
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
+        DataStream<Tuple2<String, Integer>> datastream = env
+                .socketTextStream("localhost", 9999)
+                .flatMap(new Splitter())
+                .keyBy(value -> value.f0)
+                .window(TumblingProcessingTimeWindows.of(Time.seconds(5)))
+                .sum(1);
+
+        datastream.print();
+
+        env.execute("Window WorldCount");
+    }
+
+    public static class Splitter implements FlatMapFunction<String, Tuple2<String, Integer>>{
+
+        @Override
+        public void flatMap(String sentence, Collector<Tuple2<String, Integer>> out) throws Exception {
+            for (String word: sentence.split(" ")){
+                out.collect(new Tuple2<String, Integer>(word, 1));
+            }
+        }
+    }
+}
