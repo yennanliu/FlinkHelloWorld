@@ -21,7 +21,7 @@ object BatchDemoDistributedCache extends App{
   val result = data.map(new RichMapFunction[String, String] {
 
     override def open(parameters: Configuration): Unit = {
-      
+
       super.open(parameters)
 
       // use the doc
