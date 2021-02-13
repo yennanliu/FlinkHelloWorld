@@ -1,6 +1,6 @@
 package org.myorg.quickstart;
 
-// https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/datastream_api.html9999
+// https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/datastream_api.html
 
 
 // plz run below as socket (data source) first, then run the program
