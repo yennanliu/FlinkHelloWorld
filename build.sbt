@@ -20,5 +20,8 @@ libraryDependencies ++= Seq(
 
   // stream process
   "org.apache.flink" %% "flink-streaming-scala" % "1.0.0" % "provided"
+
+  // twitter
+  //"org.apache.flink" %% "flink-connector-twitter" % "1.10.1"
 )
     
