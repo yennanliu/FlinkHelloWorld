@@ -13,7 +13,9 @@ import scala.collection.JavaConverters._
 object WindowJoin extends App {
 
   case class Grade(name: String, grade: Int)
+
   case class Salary(name: String, salary: Int)
+
   case class Person(name: String, grade: Int, salary: Int)
 
   val params = ParameterTool.fromArgs(args)
@@ -45,18 +47,17 @@ object WindowJoin extends App {
   // execute program
   env.execute("Windowed Join Example")
 
-
-  // let's define the helper method
+  // let's define a helper method
   def joinStreams(
-     grades: DataStream[Grade],
-     salaries: DataStream[Salary],
-     windowSize: Long): DataStream[Person] = {
+                   grades: DataStream[Grade],
+                   salaries: DataStream[Salary],
+                   windowSize: Long): DataStream[Person] = {
 
     grades.join(salaries)
       .where(_.name)
       .equalTo(_.name)
       .window(TumblingEventTimeWindows.of(Time.milliseconds(windowSize)))
-      .apply { (g,s) => Person(g.name, g.grade, s.salary)}
+      .apply { (g, s) => Person(g.name, g.grade, s.salary) }
   }
 
 }

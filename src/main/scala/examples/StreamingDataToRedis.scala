@@ -7,7 +7,7 @@ import org.apache.flink.streaming.connectors.redis.RedisSink
 import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisPoolConfig
 import org.apache.flink.streaming.connectors.redis.common.mapper.{RedisCommand, RedisCommandDescription, RedisMapper}
 
-object StreamingDataToRedis{
+object StreamingDataToRedis {
 
   def main(args: Array[String]) {
     println("running StreamingDataToRedis ...")
@@ -32,7 +32,7 @@ object StreamingDataToRedis{
     env.execute("Socket Window Count")
   }
 
-  class MyRedisMapper extends RedisMapper[Tuple2[String, String]]{
+  class MyRedisMapper extends RedisMapper[Tuple2[String, String]] {
     override def getKeyFromData(data: (String, String)): String = {
       data._1
     }
@@ -45,4 +45,5 @@ object StreamingDataToRedis{
       new RedisCommandDescription(RedisCommand.LPUSH)
     }
   }
+
 }

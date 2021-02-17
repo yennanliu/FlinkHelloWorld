@@ -34,36 +34,36 @@ object GroupedProcessingTimeWindowExample extends App {
 
 }
 
-  // *** Define DataSource class **/
-  /**
-   * Parallel data source that serves a list of key-value pair.
-   */
-  private class DataSource extends RichParallelSourceFunction[(Long, Long)] {
-    @volatile private var running = true
+// *** Define DataSource class **/
+/**
+ * Parallel data source that serves a list of key-value pair.
+ */
+private class DataSource extends RichParallelSourceFunction[(Long, Long)] {
+  @volatile private var running = true
 
-    override def run(ctx: SourceContext[(Long, Long)]): Unit = {
-      val startTime = System.currentTimeMillis()
+  override def run(ctx: SourceContext[(Long, Long)]): Unit = {
+    val startTime = System.currentTimeMillis()
 
-      val numElements = 20000000
-      val numKeys = 10000
-      var value = 1L
-      var count = 0L
+    val numElements = 20000000
+    val numKeys = 10000
+    var value = 1L
+    var count = 0L
 
-      while (running && count < numElements) {
-        ctx.collect((value, 1L))
+    while (running && count < numElements) {
+      ctx.collect((value, 1L))
 
-        count += 1
-        value += 1
+      count += 1
+      value += 1
 
-        if (value > numKeys) {
-          value = 1L
-        }
+      if (value > numKeys) {
+        value = 1L
       }
-
-      val endTime = System.currentTimeMillis()
-      println(s"Took ${endTime - startTime}")
     }
 
-    override def cancel(): Unit = running = false
+    val endTime = System.currentTimeMillis()
+    println(s"Took ${endTime - startTime}")
+  }
+
+  override def cancel(): Unit = running = false
 }
 

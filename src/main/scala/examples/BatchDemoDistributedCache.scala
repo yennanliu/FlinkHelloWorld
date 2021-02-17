@@ -5,7 +5,7 @@ import org.apache.flink.api.common.functions.RichMapFunction
 import org.apache.flink.api.scala.ExecutionEnvironment
 import org.apache.flink.configuration.Configuration
 
-object BatchDemoDistributedCache extends App{
+object BatchDemoDistributedCache extends App {
 
   println("BatchDemoDistributedCache run ...")
 
@@ -31,11 +31,12 @@ object BatchDemoDistributedCache extends App{
 
       val it = lines.iterator()
 
-      while (it.hasNext){
+      while (it.hasNext) {
         val line = it.next();
-        println(s"line : " +line)
+        println(s"line : " + line)
       }
     }
+
     override def map(value: String) = {
       value
     }

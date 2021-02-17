@@ -6,7 +6,7 @@ import org.apache.flink.configuration.Configuration
 
 import scala.collection.mutable.ListBuffer
 
-object BatchDemoBroadcastScala extends App{
+object BatchDemoBroadcastScala extends App {
 
   val env = ExecutionEnvironment.getExecutionEnvironment
 
@@ -26,7 +26,7 @@ object BatchDemoBroadcastScala extends App{
 
   val text = env.fromElements("zs", "ls", "ww")
 
-  val result = text.map( new RichMapFunction[String, String] {
+  val result = text.map(new RichMapFunction[String, String] {
 
     var listData: java.util.List[Map[String, Int]] = null
     var allMap = Map[String, Int]()
@@ -46,9 +46,9 @@ object BatchDemoBroadcastScala extends App{
 
     override def map(value: String): String = {
       val age = allMap.get(value).get
-      value+","+age
+      value + "," + age
     }
-    }).withBroadcastSet (toBroadcastData, "broadcastMapName") // run the op for broadcast data
+  }).withBroadcastSet(toBroadcastData, "broadcastMapName") // run the op for broadcast data
 
-    result.print()
+  result.print()
 }

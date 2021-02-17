@@ -2,7 +2,6 @@ package examples
 
 // https://github.com/apache/flink/blob/master/flink-examples/flink-examples-streaming/src/main/scala/org/apache/flink/streaming/scala/examples/windowing/SessionWindowing.scala
 
-
 import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.api.scala._
 import org.apache.flink.streaming.api.TimeCharacteristic
@@ -15,7 +14,6 @@ import org.apache.flink.streaming.api.windowing.assigners.SlidingProcessingTimeW
 //import org.apache.flink.streaming.api.windowing.assigners.EventTimeSessionWindows
 import org.apache.flink.streaming.api.windowing.assigners.SlidingEventTimeWindows
 import org.apache.flink.streaming.api.windowing.time.Time
-
 
 object SessionWindowing extends App {
   val params = ParameterTool.fromArgs(args)
@@ -65,7 +63,7 @@ object SessionWindowing extends App {
     .window(SlidingProcessingTimeWindows.of(Time.milliseconds(2500), Time.milliseconds((500))))
     .sum(2)
 
-  if (fileOutput){
+  if (fileOutput) {
     aggregated.writeAsText(params.get("output"))
   } else {
     print("Printing result to stdout. Use --output to specify output path.")

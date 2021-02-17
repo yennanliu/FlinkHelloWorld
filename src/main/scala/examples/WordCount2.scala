@@ -20,14 +20,14 @@ object WordCount2 extends App {
   // get text data
   // read the text file from given input path
   val text =
-    if (params.has("input")) {
-      env.readTextFile(params.get("input"))
-    } else {
-      println("Executing WordCount example with default inputs data set.")
-      println("Use --input to specify file input.")
-      // get default test text data
-      env.fromElements("data/test.text")
-    }
+  if (params.has("input")) {
+    env.readTextFile(params.get("input"))
+  } else {
+    println("Executing WordCount example with default inputs data set.")
+    println("Use --input to specify file input.")
+    // get default test text data
+    env.fromElements("data/test.text")
+  }
 
   val counts: DataStream[(String, Int)] = text
     // split up the lines in pairs (2-tuples) containing: (word,1)
@@ -39,7 +39,7 @@ object WordCount2 extends App {
     .sum(1)
 
   // send the result
-  if (params.has("output")){
+  if (params.has("output")) {
     counts.writeAsText(params.get("output"))
   } else {
     println("Printing result to stdout. Use --output to specify output path.")

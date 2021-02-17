@@ -7,7 +7,7 @@ import scala.util.Try
 // UDF
 import common.FileOP
 
-object BatchWordCount extends App{
+object BatchWordCount extends App {
   val inputPath = "data/test.txt"
   val output = "data/output/test_output.csv"
 
@@ -15,11 +15,12 @@ object BatchWordCount extends App{
   val text = env.readTextFile(inputPath)
 
   // import implicit transformation
+
   import org.apache.flink.api.scala._
 
   val counts = text.flatMap(_.toLowerCase.split("\\W+"))
     .filter(_.nonEmpty)
-    .map((_,1))
+    .map((_, 1))
     .groupBy(0)
     .sum(1)
 

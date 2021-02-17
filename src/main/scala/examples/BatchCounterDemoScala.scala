@@ -5,7 +5,7 @@ import org.apache.flink.api.common.functions.RichMapFunction
 import org.apache.flink.api.scala.ExecutionEnvironment
 import org.apache.flink.configuration.Configuration
 
-object BatchCounterDemoScala extends App{
+object BatchCounterDemoScala extends App {
 
   val env = ExecutionEnvironment.getExecutionEnvironment
 
@@ -26,7 +26,7 @@ object BatchCounterDemoScala extends App{
       getRuntimeContext.addAccumulator("num-lines", this.numLines)
     }
 
-    override def map(value: String):String = {
+    override def map(value: String): String = {
       this.numLines.add(1)
       value
     }

@@ -62,7 +62,7 @@ object TopSpeedWindowing {
           val distances = Array.fill[Double](numOfCars)(0d)
           @Transient lazy val rand = new Random()
 
-          var isRunning:Boolean = true
+          var isRunning: Boolean = true
 
           override def run(ctx: SourceContext[CarEvent]) = {
             while (isRunning) {
@@ -85,7 +85,7 @@ object TopSpeedWindowing {
       }
 
     val topSpeeds = cars
-      .assignAscendingTimestamps( _.time )
+      .assignAscendingTimestamps(_.time)
       .keyBy(_.carId)
       .window(GlobalWindows.create)
       .evictor(TimeEvictor.of(Time.of(evictionSec * 1000, TimeUnit.MILLISECONDS)))
@@ -112,7 +112,7 @@ object TopSpeedWindowing {
   // USER FUNCTIONS
   // *************************************************************************
 
-  def parseMap(line : String): (Int, Int, Double, Long) = {
+  def parseMap(line: String): (Int, Int, Double, Long) = {
     val record = line.substring(1, line.length - 1).split(",")
     (record(0).toInt, record(1).toInt, record(2).toDouble, record(3).toLong)
   }

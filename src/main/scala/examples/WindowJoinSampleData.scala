@@ -63,4 +63,5 @@ object WindowJoinSampleData {
       Salary(NAMES(rnd.nextInt(NAMES.length)), rnd.nextInt(SALARY_MAX) + 1)
     }
   }
+
 }

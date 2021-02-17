@@ -8,18 +8,19 @@ import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 // UDF
 import examples.ParallelSource
 
-object StreamDemoMyPartitioner extends App{
+object StreamDemoMyPartitioner extends App {
 
   val env = StreamExecutionEnvironment.getExecutionEnvironment
   env.setParallelism(2)
 
   // implicit transformation
+
   import org.apache.flink.api.scala._
 
   val text = env.addSource(new ParallelSource)
 
   // transform Long to Tuple dtype
-  val tupleData = text.map(line =>{
+  val tupleData = text.map(line => {
     Tuple1(line)
   })
 
@@ -32,5 +33,4 @@ object StreamDemoMyPartitioner extends App{
 
   result.print().setParallelism(1)
   env.execute("StreamDemoMyPartitioner")
-
 }

@@ -2,9 +2,9 @@ package examples
 
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 
-object CheckPointDemo1 extends App{
+object CheckPointDemo1 extends App {
 
-  println ("CheckPointDemo1 run...")
+  println("CheckPointDemo1 run...")
 
   val env = StreamExecutionEnvironment.getExecutionEnvironment
 

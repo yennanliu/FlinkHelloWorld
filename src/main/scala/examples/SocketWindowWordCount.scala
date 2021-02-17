@@ -40,5 +40,5 @@ object SocketWindowWordCount extends App {
   // run the process
   env.execute("Socket window count")
 
-  case class WordWithCount(word:String, count:Long)
+  case class WordWithCount(word: String, count: Long)
 }

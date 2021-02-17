@@ -26,33 +26,33 @@ object WindowWordCount extends App {
       env.fromElements(WordCountData.WORDS: _*)
     }
 
-    // make parameters available in the web interface
-    env.getConfig.setGlobalJobParameters(params)
+  // make parameters available in the web interface
+  env.getConfig.setGlobalJobParameters(params)
 
-    val windowSize = params.getInt("window", 250)
-    val slideSize = params.getInt("slide", 150)
+  val windowSize = params.getInt("window", 250)
+  val slideSize = params.getInt("slide", 150)
 
-    val counts: DataStream[(String, Int)] = text
-      // split the lines in pairs (2-tuple) containing: (word,1)
-      .flatMap(_.toLowerCase.split("\\W+"))
-      .filter(_.nonEmpty)
-      .map((_, 1))
-      .keyBy(_._1)
-      // create windows of windowSize records slided every slideSize records
-      .countWindow(windowSize, slideSize)
-      // group by the tuple field "0" and sum up tuple field "1"
-      .sum(1)
+  val counts: DataStream[(String, Int)] = text
+    // split the lines in pairs (2-tuple) containing: (word,1)
+    .flatMap(_.toLowerCase.split("\\W+"))
+    .filter(_.nonEmpty)
+    .map((_, 1))
+    .keyBy(_._1)
+    // create windows of windowSize records slided every slideSize records
+    .countWindow(windowSize, slideSize)
+    // group by the tuple field "0" and sum up tuple field "1"
+    .sum(1)
 
-   // emit the result
-   if (params.has("output")) {
-     counts.writeAsText(params.get("output"))
-   } else {
-     println("Printing result to stdout. Use --output to specify output path.")
-     println("********")
-     counts.print()
-     println ("**** counts = " + counts.print().toString)
-     println("********")
-   }
+  // emit the result
+  if (params.has("output")) {
+    counts.writeAsText(params.get("output"))
+  } else {
+    println("Printing result to stdout. Use --output to specify output path.")
+    println("********")
+    counts.print()
+    println("**** counts = " + counts.print().toString)
+    println("********")
+  }
 
   // execute the program
   env.execute()
