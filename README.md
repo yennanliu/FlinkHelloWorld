@@ -65,26 +65,43 @@ bash script/start-scala-shell.sh local
 
 ```bash 
 # V1
+# https://ci.apache.org/projects/flink/flink-docs-stable/deployment/resource-providers/standalone/docker.html#enabling-python
 
 FLINK_PROPERTIES="jobmanager.rpc.address: jobmanager"
 docker network create flink-network
 
+# TaskManager
 docker run \
-       -d \
-       --rm \
-       --name=jobmanager \
-       --network flink-network \
-       -p 8081:8081 \
-       --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
-       flink:1.11.1 jobmanager
+    -d \
+    --rm \
+    --name=jobmanager \
+    --network flink-network \
+    --publish 8081:8081 \
+    --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
+    flink:1.12.0-scala_2.11 jobmanager
 
+# TaskManager
 docker run \
-      -d \
-      --rm \
-      --name=taskmanager \
-      --network flink-network \
-      --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
-      flink:1.11.1 taskmanager
+    -d \
+    --rm \
+    --name=taskmanager \
+    --network flink-network \
+    --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
+    flink:1.12.0-scala_2.11 taskmanager
+
+# web UI : localhost:8080
+
+# run some jobs
+# batch
+flink run examples/batch/ConnectedComponents.jar 
+flink run examples/batch/EnumTriangles.jar 
+flink run examples/batch/PageRank.jar 
+flink run examples/batch/WebLogAnalysis.jar 
+flink run examples/batch/DistCp.jar 
+flink run examples/batch/KMeans.jar 
+flink run examples/batch/TransitiveClosure.jar 
+flink run examples/batch/WordCount.jar 
+flink run examples/batch/ConnectedComponents.jar 
 ```
 
 ```bash
