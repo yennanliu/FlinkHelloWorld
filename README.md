@@ -11,6 +11,19 @@
 	- Python
 		- pip/Conda
 
+## Concepts
+- Client : send jobs to clusters (via CLI or flink UI or JobManager's RPC endpoint : ExecutionEnvironment ). client <--> JobManager
+- JobManager : (`master node`), manage all jobs, and resources allocation. Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
+- TaskManager : (`slave node`), be responsible for actual job execution, and workers resources management. 
+
+- simple architecture
+```                      <----> ... 
+Client <----> JobManager <----> TaskManager & worker
+                         <---->  ...
+```
+
+- [ref](https://codingnote.cc/zh-hk/p/38108/)
+
 ## Install
 - https://ci.apache.org/projects/flink/flink-docs-stable/getting-started/tutorials/local_setup.html
 - https://github.com/yennanliu/utility_shell/tree/master/flink
