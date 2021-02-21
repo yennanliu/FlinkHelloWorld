@@ -13,7 +13,7 @@
 - TaskManager : (`slave node`), be responsible for actual job execution, and workers resources management. 
 
 - Architecture
-<p ><img src ="https://github.com/yennanliu/JavaHelloWorld/blob/main/doc/pic/flink_architecture.png"></p>
+<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture.png"></p>
 
 ```
                          <----> ... 
