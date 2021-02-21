@@ -1,23 +1,20 @@
 # FlinkHelloWorld
 > Build variois Flink POC apps as well as infra/clusters set up
 
-- IDE
-	- IntelliJ
+- IDE : IntelliJ
 - Programming language
-	- Scala
-		- sbt
-	- Java
-		- Maven
-	- Python
-		- pip/Conda
+	- Scala : sbt
+	- Java : Maven
+	- Python :pip/Conda
 
 ## Concepts
-- Client : send jobs to clusters (via CLI or flink UI or JobManager's RPC endpoint : ExecutionEnvironment ). client <--> JobManager
+- Client : send jobs to clusters (`via CLI or flink UI or JobManager's RPC endpoint`: ExecutionEnvironment ). client <--> JobManager
 - JobManager : (`master node`), manage all jobs, and resources allocation. Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
 - TaskManager : (`slave node`), be responsible for actual job execution, and workers resources management. 
 
 - simple architecture
-```                      <----> ... 
+```
+                         <----> ... 
 Client <----> JobManager <----> TaskManager & worker
                          <---->  ...
 ```
