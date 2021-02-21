@@ -12,14 +12,17 @@
 - JobManager : (`master node`), manage all jobs, and resources allocation. Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
 - TaskManager : (`slave node`), be responsible for actual job execution, and workers resources management. 
 
-- simple architecture
+- Architecture
+<p ><img src ="https://github.com/yennanliu/JavaHelloWorld/blob/main/doc/pic/flink_architecture.png"></p>
+
 ```
                          <----> ... 
 Client <----> JobManager <----> TaskManager & worker
                          <---->  ...
 ```
 
-- [ref](https://codingnote.cc/zh-hk/p/38108/)
+- [ref1](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/#per-job-mode)
+- [ref2](https://codingnote.cc/zh-hk/p/38108/)
 
 ## Install
 - https://ci.apache.org/projects/flink/flink-docs-stable/getting-started/tutorials/local_setup.html
@@ -92,6 +95,7 @@ docker run \
 # web UI : localhost:8080
 
 # run some jobs
+
 # batch
 flink run examples/batch/ConnectedComponents.jar 
 flink run examples/batch/EnumTriangles.jar 
@@ -101,7 +105,15 @@ flink run examples/batch/DistCp.jar
 flink run examples/batch/KMeans.jar 
 flink run examples/batch/TransitiveClosure.jar 
 flink run examples/batch/WordCount.jar 
-flink run examples/batch/ConnectedComponents.jar 
+flink run examples/batch/ConnectedComponents.jar
+
+# stream
+flink run examples/streaming/WordCount.jar
+flink run examples/streaming/SessionWindowing.jar
+flink run examples/streaming/StateMachineExample.jar
+flink run examples/streaming/Iteration.jar
+flink run examples/streaming/SessionWindowing.jar
+flink run examples/streaming/TopSpeedWindowing.jar
 ```
 
 ```bash
