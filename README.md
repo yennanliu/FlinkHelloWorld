@@ -135,6 +135,16 @@ docker run --name flink_taskmanager -d -t flink taskmanager
 # Method 3) Running a cluster using Docker Compose
 docker-compose up
 ```
+
+```bash
+# V3 
+git clone https://github.com/yennanliu/flinkhelloworld.git
+cd flinkhelloworld
+docker-compose -f  docker-compose-dev.yml up --build -d
+
+# should start a jobmanager, taskmanager
+```
+
 </details>
 
 ## Ref 
