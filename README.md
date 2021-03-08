@@ -194,6 +194,9 @@ docker-compose -f  docker-compose-dev.yml up --build -d
 - Flink with K8S
 	- https://ci.apache.org/projects/flink/flink-docs-stable/ops/deployment/kubernetes.html
 
+- Flink sink data to hadoop/Avro/Parquet/ORC...
+	- https://ci.apache.org/projects/flink/flink-docs-stable/dev/connectors/streamfile_sink.html#bulk-encoded-formats
+
 </details>
 
 ## Dockerfile
