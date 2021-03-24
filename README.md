@@ -1,5 +1,5 @@
 # FlinkHelloWorld
-> Build variois Flink POC apps as well as infra/clusters set up
+> Build Flink apps and configs as POC
 
 - IDE : IntelliJ
 - Programming language
