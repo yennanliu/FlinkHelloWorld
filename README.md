@@ -1,15 +1,28 @@
 # FlinkHelloWorld
 > Build variois Flink POC apps as well as infra/clusters set up
 
-- IDE
-	- IntelliJ
+- IDE : IntelliJ
 - Programming language
-	- Scala
-		- sbt
-	- Java
-		- Maven
-	- Python
-		- pip/Conda
+	- Scala : sbt
+	- Java : Maven
+	- Python :pip/Conda
+
+## Concepts
+- Client : send jobs to clusters (`via CLI or flink UI or JobManager's RPC endpoint`: ExecutionEnvironment ). client <--> JobManager
+- JobManager : (`master node`), manage all jobs, and resources allocation. Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
+- TaskManager : (`slave node`), be responsible for actual job execution, and workers resources management. 
+
+- Architecture
+<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture.png"></p>
+
+```
+                         <----> ... 
+Client <----> JobManager <----> TaskManager & worker
+                         <---->  ...
+```
+
+- [ref1](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/#per-job-mode)
+- [ref2](https://codingnote.cc/zh-hk/p/38108/)
 
 ## Install
 - https://ci.apache.org/projects/flink/flink-docs-stable/getting-started/tutorials/local_setup.html
@@ -55,26 +68,52 @@ bash script/start-scala-shell.sh local
 
 ```bash 
 # V1
+# https://ci.apache.org/projects/flink/flink-docs-stable/deployment/resource-providers/standalone/docker.html#enabling-python
 
 FLINK_PROPERTIES="jobmanager.rpc.address: jobmanager"
 docker network create flink-network
 
+# TaskManager
 docker run \
-       -d \
-       --rm \
-       --name=jobmanager \
-       --network flink-network \
-       -p 8081:8081 \
-       --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
-       flink:1.11.1 jobmanager
+    -d \
+    --rm \
+    --name=jobmanager \
+    --network flink-network \
+    --publish 8081:8081 \
+    --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
+    flink:1.12.0-scala_2.11 jobmanager
 
+# TaskManager
 docker run \
-      -d \
-      --rm \
-      --name=taskmanager \
-      --network flink-network \
-      --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
-      flink:1.11.1 taskmanager
+    -d \
+    --rm \
+    --name=taskmanager \
+    --network flink-network \
+    --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
+    flink:1.12.0-scala_2.11 taskmanager
+
+# web UI : localhost:8080
+
+# run some jobs
+
+# batch
+flink run examples/batch/ConnectedComponents.jar 
+flink run examples/batch/EnumTriangles.jar 
+flink run examples/batch/PageRank.jar 
+flink run examples/batch/WebLogAnalysis.jar 
+flink run examples/batch/DistCp.jar 
+flink run examples/batch/KMeans.jar 
+flink run examples/batch/TransitiveClosure.jar 
+flink run examples/batch/WordCount.jar 
+flink run examples/batch/ConnectedComponents.jar
+
+# stream
+flink run examples/streaming/WordCount.jar
+flink run examples/streaming/SessionWindowing.jar
+flink run examples/streaming/StateMachineExample.jar
+flink run examples/streaming/Iteration.jar
+flink run examples/streaming/SessionWindowing.jar
+flink run examples/streaming/TopSpeedWindowing.jar
 ```
 
 ```bash
@@ -96,6 +135,16 @@ docker run --name flink_taskmanager -d -t flink taskmanager
 # Method 3) Running a cluster using Docker Compose
 docker-compose up
 ```
+
+```bash
+# V3 
+git clone https://github.com/yennanliu/flinkhelloworld.git
+cd flinkhelloworld
+docker-compose -f  docker-compose-dev.yml up --build -d
+
+# should start a jobmanager, taskmanager
+```
+
 </details>
 
 ## Ref 
@@ -144,6 +193,9 @@ docker-compose up
 
 - Flink with K8S
 	- https://ci.apache.org/projects/flink/flink-docs-stable/ops/deployment/kubernetes.html
+
+- Flink sink data to hadoop/Avro/Parquet/ORC...
+	- https://ci.apache.org/projects/flink/flink-docs-stable/dev/connectors/streamfile_sink.html#bulk-encoded-formats
 
 </details>
 
