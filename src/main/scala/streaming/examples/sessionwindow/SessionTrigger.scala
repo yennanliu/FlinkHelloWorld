@@ -17,4 +17,6 @@ class SessionTrigger[W <: Window] extends Trigger[Session,W] {
   override def onEventTime(time: Long, window: W, ctx: TriggerContext): TriggerResult = {
     TriggerResult.CONTINUE
   }
+
+  override def clear(window: W, ctx: TriggerContext): Unit = ???
 }

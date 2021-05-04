@@ -3,7 +3,7 @@ package examples
 import java.sql.Types
 
 import org.apache.flink.api.common.typeinfo.TypeInformation
-import org.apache.flink.streaming.api.collector.selector.OutputSelector
+//import org.apache.flink.streaming.api.collector.selector.OutputSelector
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 
 //import org.apache.flink.table.api.EnvironmentSettings
