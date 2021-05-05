@@ -19,6 +19,7 @@ libraryDependencies ++= Seq(
     "org.apache.flink" % "flink-formats" % flinkVersion,
     "org.apache.flink" % "flink-compress" % flinkVersion,
     "org.apache.flink" %% "flink-connector-kafka" % flinkVersion,
+    "org.apache.flink" %% "flink-connector-filesystem_2.10" % flinkVersion,
 
     // hadoop
     "org.apache.hadoop" % "hadoop-common" % "2.4.0",
@@ -28,7 +29,6 @@ libraryDependencies ++= Seq(
     // joda
     "joda-time" % "joda-time" % "2.10.10",
 )
-
 
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs@_*) => MergeStrategy.discard
