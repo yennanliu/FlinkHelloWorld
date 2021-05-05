@@ -2,7 +2,7 @@ package examples
 
 import java.util
 
-import org.apache.flink.streaming.api.collector.selector.OutputSelector
+//import org.apache.flink.streaming.api.collector.selector.OutputSelector
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 
 // UDF
