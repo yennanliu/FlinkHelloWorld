@@ -53,6 +53,19 @@ bash script/stop-cluster.sh    # Stop flink
 <details>
 <summary>Quick Start</summary>
 
+### Run manually
+
+```bash
+# build
+sbt assembly
+
+# run the flink cluster (local)
+bash script/start-cluster.sh 
+
+# run apps
+/usr/local/bin/flink run -c examples.WordCount -d target/scala-2.12/flinkhelloworld-assembly-1.0.jar
+```
+
 ## Send the stream via CLI
 ```bash
 # send to localhost:9000
