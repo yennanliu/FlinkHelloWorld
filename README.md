@@ -62,8 +62,15 @@ sbt assembly
 # run the flink cluster (local)
 bash script/start-cluster.sh 
 
-# run apps
+# run batch apps
 /usr/local/bin/flink run -c examples.WordCount -d target/scala-2.12/flinkhelloworld-assembly-1.0.jar
+
+/usr/local/bin/flink run -c examples.WordCount2 -d target/scala-2.12/flinkhelloworld-assembly-1.0.jar
+
+# run stream apps
+nc -lk 9999
+
+/usr/local/bin/flink run -c dev.StreamFromSocketV1 -d target/scala-2.12/flinkhelloworld-assembly-1.0.jar
 ```
 
 ## Send the stream via CLI
