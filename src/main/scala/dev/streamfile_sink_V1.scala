@@ -46,7 +46,7 @@ object streamfile_sink_V1 extends App {
       val objectMapper = new ObjectMapper()
       val node = objectMapper.readTree(element)
       val date = node.path("timestamp").floatValue() * 1000
-     val  partitionValue = new SimpleDateFormat("yyyyMMdd").format(new SimpleDateFormat()(date))
+     val  partitionValue = new SimpleDateFormat("yyyyMMdd").format(new Date)
       "dt=" + partitionValue
     }
 
