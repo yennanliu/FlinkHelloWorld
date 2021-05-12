@@ -43,17 +43,20 @@ object streamfile_sink_V1 extends App {
 
     // http://shzhangji.com/blog/2018/12/23/real-time-exactly-once-etl-with-apache-flink/
     override def getBucketId(element: String, context: BucketAssigner.Context): String = {
-      val objectMapper = new ObjectMapper()
-      val node = objectMapper.readTree(element)
-      val date = node.path("timestamp").floatValue() * 1000
-     val  partitionValue = new SimpleDateFormat("yyyyMMdd").format(new Date)
-      "dt=" + partitionValue
+    // TODO : fix below implementation
+      
+    //      val objectMapper = new ObjectMapper()
+    //      val node = objectMapper.readTree(element)
+    //      val date = node.path("timestamp").floatValue() * 1000
+    //      val  partitionValue = new SimpleDateFormat("yyyyMMdd").format(new Date)
+    //      "dt=" + partitionValue
+      "dt=" + "123"
     }
 
     override def getSerializer: SimpleVersionedSerializer[String] = SimpleVersionedStringSerializer.INSTANCE
   }
 
-  val outputPath = "/someOutputPath"
+  val outputPath = "someOutputPath"
 
   val sink = StreamingFileSink
     .forRowFormat(new Path(outputPath), new SimpleStringEncoder[String]("UTF-8"))
@@ -63,4 +66,6 @@ object streamfile_sink_V1 extends App {
     .build()
 
   stream.addSink(sink)
+
+  env.execute("streamfile_sink_V1")
 }
