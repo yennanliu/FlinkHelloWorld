@@ -67,10 +67,16 @@ bash script/start-cluster.sh
 
 /usr/local/bin/flink run -c examples.WordCount2 -d target/scala-2.12/flinkhelloworld-assembly-1.0.jar
 
+# JOB 1
 # run stream apps
 nc -lk 9999
 
 /usr/local/bin/flink run -c dev.StreamFromSocketV1 -d target/scala-2.12/flinkhelloworld-assembly-1.0.jar
+
+# JOB 2
+# trigger kafka send event to topic = "raw_data" first
+# https://github.com/yennanliu/KafkaSparkPoc/blob/main/kafka/src/main/scala/com/yen/Producer/producerV1.scala
+/usr/local/bin/flink run -c dev.streamFromKafkaV1 -d target/scala-2.12/flinkhelloworld-assembly-1.0.jar
 ```
 
 ## Send the stream via CLI

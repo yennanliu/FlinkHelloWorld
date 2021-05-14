@@ -44,7 +44,7 @@ object streamfile_sink_V1 extends App {
     // http://shzhangji.com/blog/2018/12/23/real-time-exactly-once-etl-with-apache-flink/
     override def getBucketId(element: String, context: BucketAssigner.Context): String = {
     // TODO : fix below implementation
-      
+
     //      val objectMapper = new ObjectMapper()
     //      val node = objectMapper.readTree(element)
     //      val date = node.path("timestamp").floatValue() * 1000
