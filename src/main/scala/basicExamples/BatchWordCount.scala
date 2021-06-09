@@ -1,11 +1,9 @@
-package examples
+package basicExamples
 
-import org.apache.flink.api.scala.ExecutionEnvironment
-import java.io._
-import scala.util.Try
+import java.io.File
 
-// UDF
 import common.FileOP
+import org.apache.flink.api.scala.ExecutionEnvironment
 
 object BatchWordCount extends App {
   val inputPath = "data/test.txt"
@@ -32,7 +30,3 @@ object BatchWordCount extends App {
   counts.writeAsCsv(output, "\n", " ").setParallelism(1)
   env.execute("BATCH WORD COUNT")
 }
-
-
-
-

@@ -1,12 +1,8 @@
-package examples
-
-/** Word count in Stream way */
-
-// https://github.com/apache/flink/blob/master/flink-examples/flink-examples-streaming/src/main/scala/org/apache/flink/streaming/scala/examples/wordcount/WordCount.scala
+package basicExamples
 
 import org.apache.flink.api.java.utils.ParameterTool
+import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
 import org.apache.flink.streaming.api.scala._
-//import org.apache.flink.streaming.examples.wordcount.util.WordCountData
 
 object WordCount2 extends App {
 

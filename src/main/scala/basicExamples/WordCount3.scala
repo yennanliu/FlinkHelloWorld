@@ -1,12 +1,7 @@
-package examples
-
-/** Word count in batch way - from file */
-
+package basicExamples
 
 import org.apache.flink.api.scala.ExecutionEnvironment
-import org.apache.flink.api.scala._
-
-// https://www.youtube.com/watch?v=7xlz1NVn76U&list=PLmOn9nNkQxJGLnTsoWaHfvXrfpWiihoxV&index=8
+import org.apache.flink.streaming.api.scala._
 
 object WordCount3 extends App {
   // get a run env

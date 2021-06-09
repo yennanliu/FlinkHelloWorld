@@ -1,11 +1,7 @@
-package examples
+package basicExamples
 
 import org.apache.flink.api.scala.ExecutionEnvironment
-import org.apache.flink.api.scala._
-
-/*
- * Wordcount example
- */
+import org.apache.flink.streaming.api.scala._
 
 object WordCount {
 

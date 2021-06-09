@@ -1,16 +1,7 @@
-package examples
-
-/**
- *  Word count in Stream way
- *
- *  plz run below command before running this script
- *  nc -lk 7777
- */
+package basicExamples
 
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala._
-
-// https://www.youtube.com/watch?v=aF48pIkc7fw&list=PLmOn9nNkQxJGLnTsoWaHfvXrfpWiihoxV&index=8
 
 object WordCount4 extends App {
 
@@ -29,7 +20,7 @@ object WordCount4 extends App {
     .keyBy(0)
     .sum(1)
 
-  wordCountDataStream.print()
+  wordCountDataStream.print().setParallelism(2) // we can set the Parallelism for this op here (default Parallelism is core of the machine)
 
   // execute the executor
   env.execute()
