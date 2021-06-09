@@ -1,5 +1,8 @@
 package examples
 
+/** Word count in batch way - from file */
+
+
 import org.apache.flink.api.scala.ExecutionEnvironment
 import org.apache.flink.api.scala._
 
