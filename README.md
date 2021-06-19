@@ -8,6 +8,11 @@
 	- Python :pip/Conda
 
 ## Concepts
+
+<details>
+<summary>Concepts</summary>
+
+
 - Client :
 	- send jobs to clusters (`via CLI or flink UI or JobManager's RPC endpoint`: ExecutionEnvironment ). client <--> JobManager
 - JobManager : 
@@ -23,6 +28,7 @@
 	- Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
 - TaskManager :
 	- Flink may have `multiple` TaskManager runs when flink is running
+	- the actual `job worker`
 	- each TaskManager is a JVM process
 	- TaskManager has the `slot` which limit how many tasks a TaskManager can run
 	- After Flink runs, TaskManager will register its `slot` from resourceManager
@@ -40,26 +46,28 @@
 	- Dispatcher also runs a web UI, for demo/monitoring...
 	- Dispatcher is not a necessary componenet. depends on how we submit the jobs
 
-- Architecture
+## Architecture
 
-- StandAlone
+#### StandAlone
 <p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_standalone2.jpeg"></p>
 <p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_standalone1.png"></p>
 
 
 ```
                                         <----> ... 
-Client --> Dispatcher --> JobManager    <----> TaskManager & worker
+Client --> Dispatcher --> JobManager    <----> TaskManager (worker)
                                         <---->  ...
 ```
 
-- Yarn
+#### Yarn
 
 <p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_yarn1.jpeg"></p>
 
 
 - [ref1](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/#per-job-mode)
 - [ref2](https://codingnote.cc/zh-hk/p/38108/)
+
+</details>
 
 ## Install
 - https://ci.apache.org/projects/flink/flink-docs-stable/getting-started/tutorials/local_setup.html
