@@ -34,8 +34,14 @@
 	- TaskManager's slot is the unit of resource in flink
 	- flink offer different ResourceManager on different env
 		- e.g. Yarn, Mesos, k8s, stand alone
+- Dispatcher
+	- offers REST endpoint for applications
+	- when one jobs submitted, Dispatcher will run and pass that job to JobManager
+	- Dispatcher also runs a web UI, for demo/monitoring...
+	- Dispatcher is not a necessary componenet. depends on how we submit the jobs
 
 - Architecture
+<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture2.jpeg"></p>
 <p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture.png"></p>
 
 ```
