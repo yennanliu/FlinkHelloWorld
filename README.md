@@ -8,9 +8,21 @@
 	- Python :pip/Conda
 
 ## Concepts
-- Client : send jobs to clusters (`via CLI or flink UI or JobManager's RPC endpoint`: ExecutionEnvironment ). client <--> JobManager
-- JobManager : (`master node`), manage all jobs, and resources allocation. Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
-- TaskManager : (`slave node`), be responsible for actual job execution, and workers resources management. 
+- Client :
+	- send jobs to clusters (`via CLI or flink UI or JobManager's RPC endpoint`: ExecutionEnvironment ). client <--> JobManager
+- JobManager : 
+	- manage the `program main process`. Each program is managed by different job manager
+	- JobManager will receive all need infrom for the go-to-run application
+		- e.g. jobGraph, logical dataflow graph, compiled jar, and other jars
+	- JobManager will transform jobGraph to ExecutionGraph that includes all concurrent jobs
+	- JobManager will ask resources from ResourceManager for the application run.
+		- resources : `slot` on `TaskManager`
+	- JobManager will coordinate all needed op when running. 
+		- e.g. `checkPoints`
+	- (`master node`), manage all jobs, and resources allocation
+	- Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
+- TaskManager : 
+	- (`slave node`), be responsible for actual job execution, and workers resources management. 
 
 - Architecture
 <p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture.png"></p>
