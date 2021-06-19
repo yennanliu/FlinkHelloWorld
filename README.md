@@ -41,14 +41,22 @@
 	- Dispatcher is not a necessary componenet. depends on how we submit the jobs
 
 - Architecture
-<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture2.jpeg"></p>
-<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture.png"></p>
+
+- StandAlone
+<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_standalone2.jpeg"></p>
+<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_standalone1.png"></p>
+
 
 ```
-                         <----> ... 
-Client <----> JobManager <----> TaskManager & worker
-                         <---->  ...
+                                        <----> ... 
+Client --> Dispatcher --> JobManager    <----> TaskManager & worker
+                                        <---->  ...
 ```
+
+- Yarn
+
+<p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_yarn1.jpeg"></p>
+
 
 - [ref1](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/#per-job-mode)
 - [ref2](https://codingnote.cc/zh-hk/p/38108/)
