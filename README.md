@@ -11,7 +11,7 @@
 - Client :
 	- send jobs to clusters (`via CLI or flink UI or JobManager's RPC endpoint`: ExecutionEnvironment ). client <--> JobManager
 - JobManager : 
-	- manage the `program main process`. Each program is managed by different job manager
+	- manage the `program main process` (a JVM process) . Each program is managed by different job manager
 	- JobManager will receive all need infrom for the go-to-run application
 		- e.g. jobGraph, logical dataflow graph, compiled jar, and other jars
 	- JobManager will transform jobGraph to ExecutionGraph that includes all concurrent jobs
@@ -21,8 +21,19 @@
 		- e.g. `checkPoints`
 	- (`master node`), manage all jobs, and resources allocation
 	- Ask TaskManagers to run jobs. All clusters can only has `1` active JobManager
-- TaskManager : 
+- TaskManager :
+	- Flink may have `multiple` TaskManager runs when flink is running
+	- each TaskManager is a JVM process
+	- TaskManager has the `slot` which limit how many tasks a TaskManager can run
+	- After Flink runs, TaskManager will register its `slot` from resourceManager
+	   -> then TaskManager will offers slot to jobManager. So jobManager can dispense tasks to slot
+	- During running,  different TaskManagers can share information each other
 	- (`slave node`), be responsible for actual job execution, and workers resources management. 
+- ResourceManager:
+	- manage the slots in TaskManager
+	- TaskManager's slot is the unit of resource in flink
+	- flink offer different ResourceManager on different env
+		- e.g. Yarn, Mesos, k8s, stand alone
 
 - Architecture
 <p ><img src ="https://github.com/yennanliu/flinkhelloworld/blob/master/doc/flink_architecture.png"></p>
