@@ -48,6 +48,7 @@ object ReadKafka1 extends App {
   // or can use the class that flink already implemented
   // needs 3 params : topic, deserializer, Properties
   val stream = env.addSource(
+    // FlinkKafkaConsumer implements 1) checkpoint 2) deal with kafka offset -> will use last offset when flink program restart
     new FlinkKafkaConsumer[String](topic, new SimpleStringSchema(), props)
   )
 
